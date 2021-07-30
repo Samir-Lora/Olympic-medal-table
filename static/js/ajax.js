@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         method: "GET",
-        url : 'http://localhost:1000/countries',
+        url : '/api/countries',
         dataType: "json",
         success: function(data){
             $.each(data, function (i, item) { 
