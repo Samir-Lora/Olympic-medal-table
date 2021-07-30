@@ -1,6 +1,8 @@
 package main
 
 import (
+	"OLYMPIC_MEDAL_TABLE/actions"
+	"OLYMPIC_MEDAL_TABLE/api"
 	"log"
 	"net/http"
 	"time"
@@ -8,13 +10,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/index.html")
-}
-
 func main() {
 	r := mux.NewRouter().StrictSlash(true)
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	server := &http.Server{
 		Addr:           ":2000",
 		Handler:        r,
@@ -23,7 +21,11 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	r.HandleFunc("/", Home).Methods("GET", "OPTIONS")
-	log.Println("Listenig...")
+	// Routes
+	r.HandleFunc("/", actions.Home).Methods("GET", "OPTIONS")
+	r.HandleFunc("/api/countries", api.CountryMedals).Methods("GET")
+	http.Handle("/", r)
+
+	log.Println("Listenig in port 2000...")
 	log.Fatal(server.ListenAndServe())
 }
