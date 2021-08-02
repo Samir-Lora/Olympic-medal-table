@@ -39,3 +39,33 @@ var Countries = CountriesMedals{
 		BronzeMedals: 10,
 	},
 }
+
+func ORGANIZE() {
+	for i := 0; i < len(Countries); i++ {
+		Countries[i].Position = int64(i + 1)
+		for j := 0; j < len(Countries); j++ {
+			if Countries[i].GoldMedalds > Countries[j].GoldMedalds {
+				auxiliar := Countries[i]
+				Countries[i] = Countries[j]
+				Countries[j] = auxiliar
+			}
+			if Countries[i].GoldMedalds == Countries[j].GoldMedalds {
+				if Countries[i].SilverMedals > Countries[j].SilverMedals {
+					auxiliar := Countries[i]
+					Countries[i] = Countries[j]
+					Countries[j] = auxiliar
+				}
+				if Countries[i].SilverMedals == Countries[j].SilverMedals {
+					if Countries[i].BronzeMedals > Countries[j].BronzeMedals {
+						auxiliar := Countries[i]
+						Countries[i] = Countries[j]
+						Countries[j] = auxiliar
+					}
+				}
+			}
+		}
+	}
+	for i := 0; i < len(Countries); i++ {
+		Countries[i].Position = int64(i + 1)
+	}
+}
