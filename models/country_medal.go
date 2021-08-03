@@ -7,6 +7,7 @@ type CountryMedal struct {
 	GoldMedalds  int64  `json:"goldmedalds"`
 	SilverMedals int64  `json:"silvermedalds"`
 	BronzeMedals int64  `json:"bronzemedalds"`
+	AllMedals    int64
 }
 
 type CountriesMedals []CountryMedal

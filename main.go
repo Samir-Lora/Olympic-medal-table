@@ -23,6 +23,7 @@ func main() {
 
 	// Routes
 	r.HandleFunc("/", actions.Home).Methods("GET", "OPTIONS")
+	//r.HandleFunc("/api/countries", api.CountryMedals).Methods("GET")
 	r.HandleFunc("/api/countries", api.CountryMedals).Methods("GET")
 	http.Handle("/", r)
 
