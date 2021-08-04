@@ -24,7 +24,7 @@ func main() {
 	// Routes
 	r.HandleFunc("/", actions.Home).Methods("GET", "OPTIONS")
 	//r.HandleFunc("/api/countries", api.CountryMedals).Methods("GET")
-	r.HandleFunc("/api/countries", api.CountryMedals).Methods("GET")
+	r.HandleFunc("/api/countriesdb", api.CountryMedals).Methods("GET")
 	http.Handle("/", r)
 
 	log.Println("Listenig in port 2000...")

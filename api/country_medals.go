@@ -16,8 +16,10 @@ import (
 //w.WriteHeader(http.StatusOK)
 //w.Write(j)
 //}
+type Country_medals struct {
+}
 
-func CountryMedals(w http.ResponseWriter, r *http.Request) {
+func (c Country_medals) CountryMedals(w http.ResponseWriter, r *http.Request) {
 	countrymedals := dbmedals.DBMEDALS()
 	w.Header().Set("Content-Type", "application/json")
 	j, _ := json.Marshal(countrymedals)
